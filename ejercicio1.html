@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ejercicio 1</title>
+  </head>
+
+  <body>
+    <div>
+      <div style="width: 40%; margin: 0 auto">
+        <h2>Escríbenos !!!</h2>
+        <div class="resultado" style="color: green; font-style: italic"></div>
+        <form id="formulario">
+          <div>
+            <div style="display: flex; flex-direction: column">
+              <label> Nombre completo </label>
+              <input id="nombre" type="text" />
+              <p class="errorNombre" style="color: red; font-style: italic"></p>
+            </div>
+            <div style="display: flex; flex-direction: column">
+              <label> Asunto </label>
+              <input id="asunto" type="text" />
+              <p class="errorAsunto" style="color: red; font-style: italic"></p>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column">
+            <label> Mensaje </label>
+            <textarea id="mensaje"></textarea>
+            <p class="errorMensaje" style="color: red; font-style: italic"></p>
+          </div>
+          <div>
+            <button id="botton" type="submit">Envíar mensaje</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script>
+      const validate = (input) => {
+        const validCharacters = /^[a-zA-Z\s]*$/;
+        return validCharacters.test(input);
+      };
+      const name = document.querySelector("#nombre");
+      const subject = document.querySelector("#asunto");
+      const message = document.querySelector("#mensaje");
+      const result = document.querySelector(".resultado");
+      const errorName = document.querySelector(".errorNombre");
+      const errorSubject = document.querySelector(".errorAsunto");
+      const errorMessage = document.querySelector(".errorMensaje");
+      const button = document.querySelector("#botton");
+      let validateName = () => {
+        if (validate(name.value) == false || name.value == "") {
+          errorName.innerHTML = "El nombre es requerido.";
+        } else {
+          errorName.innerHTML = "";
+        }
+      };
+      let validateSubject = () => {
+        if (validate(subject.value) == false || subject.value == "") {
+          errorSubject.innerHTML = "El asunto es requerido.";
+        } else {
+          errorSubject.innerHTML = "";
+        }
+      };
+      let validateMessage = () => {
+        if (validate(message.value) == false || message.value == "") {
+          errorMessage.innerHTML = "El mensaje es requerido.";
+        } else {
+          errorMessage.innerHTML = "";
+        }
+      };
+      let validateData = () => {
+        event.preventDefault();
+        validateName();
+        validateSubject();
+        validateMessage();
+        if (
+          validate(name.value) &&
+          name.value != "" &&
+          validate(subject.value) &&
+          subject.value != "" &&
+          validate(message.value) &&
+          message.value != ""
+        ) {
+          result.innerHTML = "Mensaje enviado con éxito";
+        } else {
+          result.innerHTML = "";
+        }
+      };
+
+      button.addEventListener("click", validateData);
+    </script>
+  </body>
+</html>

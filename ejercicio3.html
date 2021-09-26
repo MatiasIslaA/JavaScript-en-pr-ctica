@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ejercicio 3</title>
+  </head>
+
+  <body>
+    <div>
+      <div>
+        <h2>Resultado: <span class="resultado"></span></h2>
+        <div>
+          <div>
+            <div>
+              <label for="">Valor 1</label>
+              <input id="valor1" type="text" />
+            </div>
+            <div>
+              <label for="">Valor 2</label>
+              <input id="valor2" type="text" />
+            </div>
+            <div style="display: flex">
+              <button id="btn-sumar" type="button">Sumar</button>
+              <button id="btn-restar" type="button">Restar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const results = document.querySelector(".resultado");
+      const btnPlus = document.querySelector("#btn-sumar");
+      const btnMinus = document.querySelector("#btn-restar");
+      const n1 = document.querySelector("#valor1");
+      const n2 = document.querySelector("#valor2");
+      const plus = (num1, num2) => {
+        return num1 + num2;
+      };
+      const minus = (num1, num2) => {
+        return num1 - num2;
+      };
+      btnPlus.addEventListener("click", function () {
+        resultOf = plus(parseInt(n1.value), parseInt(n2.value));
+        if (resultOf < 0) {
+          results.textContent = "0";
+        } else {
+          results.textContent = resultOf;
+        }
+      });
+      btnMinus.addEventListener("click", function () {
+        resultOf = minus(parseInt(n1.value), parseInt(n2.value));
+        if (resultOf < 0) {
+          results.textContent = "0";
+        } else {
+          results.textContent = resultOf;
+        }
+      });
+    </script>
+  </body>
+</html>
